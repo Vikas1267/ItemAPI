@@ -12,6 +12,12 @@ App starts on `http://localhost:8080`.
 
 ## Endpoints
 
+### Health check
+
+`GET /healthz`
+
+Returns `200 OK` with `{ "status": "ok" }`.
+
 ### Create item
 
 `POST /api/items`
