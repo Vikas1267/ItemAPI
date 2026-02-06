@@ -9,7 +9,7 @@ const getForm = document.getElementById("getForm");
 const getResult = document.getElementById("getResult");
 const itemsList = document.getElementById("itemsList");
 
-const DEFAULT_BASE = "http://localhost:8080";
+const DEFAULT_BASE = "https://itemapi-0isg.onrender.com";
 
 function normalizeBase(url) {
   return url.replace(/\/+$/, "");
