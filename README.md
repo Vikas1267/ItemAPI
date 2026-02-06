@@ -10,6 +10,19 @@ Simple REST API for managing items using an in-memory data store.
 
 App starts on `http://localhost:8080`.
 
+## Frontend UI (Vercel/Netlify)
+
+A static UI lives in `frontend/` and can be deployed separately.
+
+Quick start (local):
+
+```bash
+cd frontend
+python -m http.server 5173
+```
+
+Then open `http://localhost:5173` and set the API base URL to `http://localhost:8080`.
+
 ## Endpoints
 
 ### Health check
@@ -64,3 +77,5 @@ Invalid input returns `400 Bad Request` with validation errors.
 ## Notes
 
 - Data is stored in memory using an `ArrayList`, so items reset when the app restarts.
+- When hosting the UI on a different domain, configure CORS via `CORS_ALLOWED_ORIGINS` (comma-separated)
+  or leave it as `*` for quick demos.
