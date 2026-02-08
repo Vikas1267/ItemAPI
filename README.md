@@ -1,81 +1,58 @@
-# Item API (Spring Boot)
+# Item API
 
-Simple REST API for managing items using an in-memory data store.
+A lightweight Item service built with Spring Boot, plus a small static web UI for trying the API. Items are stored in memory and reset on every server restart.
 
-## Run
+## What This Project Is
 
-```bash
-./mvnw spring-boot:run
-```
+- REST API for creating and retrieving items.
+- Static browser UI (HTML/CSS/JS) that calls the API.
+- Dockerfile included for container-based deployment.
 
-App starts on `http://localhost:8080`.
+## Access (Hosted)
 
-## Frontend UI (Vercel/Netlify)
+- Website link: `https://exquisite-kelpie-fe4cd6.netlify.app/`
 
-A static UI lives in `frontend/` and can be deployed separately.
+Basic steps:
 
-Quick start (local):
+1. Open the UI link.
+2. The Base URL is already filled in for you.
+3. Click `Check Health` to confirm the API is reachable and ensure you get (Status : ok).
+4. In **Create Item**, fill the fields and click **Create Item**.
+5. The response shows the new item with an `id`.
+6. Use **Get Item** with that `id` to fetch it again.
+7. Click **Refresh Items** to list all saved items.
 
-```bash
-cd frontend
-python -m http.server 5173
-```
+## API Overview
 
-Then open `http://localhost:5173` and set the API base URL to `http://localhost:8080`.
+Endpoints:
 
-## Endpoints
+- `GET /` returns a simple JSON message and endpoints list.
+- `GET /healthz` returns `{ "status": "ok" }`.
+- `POST /api/items` creates a new item.
+- `GET /api/items/{id}` fetches one item by id.
+- `GET /api/items` lists all items.
 
-### Health check
+Field rules:
 
-`GET /healthz`
+- `name` and `description` are required.
+- `category` is optional.
+- `price` is optional, must be zero or positive, and defaults to `0`.
 
-Returns `200 OK` with `{ "status": "ok" }`.
+Response shape includes `id` and `available` (defaults to `true`).
 
-### Create item
+## Behavior
 
-`POST /api/items`
+- Data is in memory only (no database).
+- IDs are auto-generated.
+- Data resets when the API restarts.
 
-Example body:
+## Configuration
 
-```json
-{
-  "name": "Wireless Mouse",
-  "description": "Ergonomic 2.4G mouse",
-  "category": "Electronics",
-  "price": 599.0
-}
-```
+- `PORT`: server port (default `8080` if not set).
+- `CORS_ALLOWED_ORIGINS`: comma-separated list of UI domains allowed to call the API.
 
-Returns `201 Created` with the saved item (including generated `id`).
+## Repo Map
 
-### Get item by id
-
-`GET /api/items/{id}`
-
-Example:
-
-`GET /api/items/1`
-
-Returns `200 OK` with the item or `404 Not Found` if the id does not exist.
-
-### Get all items
-
-`GET /api/items`
-
-Returns `200 OK` with a JSON array (empty array if no items exist).
-
-## Validation
-
-Input validation is enabled:
-
-- `name` is required and cannot be blank.
-- `description` is required and cannot be blank.
-- `price` must be zero or positive (optional field).
-
-Invalid input returns `400 Bad Request` with validation errors.
-
-## Notes
-
-- Data is stored in memory using an `ArrayList`, so items reset when the app restarts.
-- When hosting the UI on a different domain, configure CORS via `CORS_ALLOWED_ORIGINS` (comma-separated)
-  or leave it as `*` for quick demos.
+- `src/` Spring Boot API
+- `frontend/` static UI
+- `Dockerfile` container build
