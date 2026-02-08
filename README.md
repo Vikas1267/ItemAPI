@@ -1,6 +1,6 @@
 # Item API
 
-A lightweight Item service built with Spring Boot, plus a small static web UI for trying the API. Items are stored in memory and reset on every server restart.
+A lightweight Item service built with Spring Boot, plus a small static web UI for accessing the API. Items are stored in memory and reset on every server restart.
 
 ## What This Project Is
 
