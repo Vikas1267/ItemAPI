@@ -10,12 +10,12 @@ A lightweight Item service built with Spring Boot, plus a small static web UI fo
 
 ## Access (Hosted)
 
-- Website link: `https://exquisite-kelpie-fe4cd6.netlify.app/`
+- Website link: "https://exquisite-kelpie-fe4cd6.netlify.app/"
 
-Basic steps:
+Steps:
 
-1. Open the UI link.
-2. The Base URL is already filled in for you.
+1. Open the Website link.
+2. The Base URL is already filled in for you(which connects to API).
 3. Click `Check Health` to confirm the API is reachable and ensure you get (Status : ok).
 4. In **Create Item**, fill the fields and click **Create Item**.
 5. The response shows the new item with an `id`.
